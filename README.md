@@ -60,8 +60,6 @@ Modern ve animasyonlu giriş/kayıt formu. Veritabanı entegrasyonu ile tam işl
    - `index.php` dosyasını tarayıcınızda açın
    
 HTML olarak denenmiştir!
-### 📱 Demo
-
 ![Animated Login Form Demo](gif.gif)
 
 ## 🎨 Özelleştirme
@@ -100,6 +98,7 @@ Sistem `users` tablosunu kullanır. Bu tabloyu oluşturmak için yukarıdaki SQL
 ## 👨‍💻 Geliştirici
 
 **SPEXRON** tarafından tasarlanmış ve geliştirilmiştir.
+
 
 
 
