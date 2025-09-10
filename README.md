@@ -31,21 +31,25 @@ Modern ve animasyonlu giriş/kayıt formu. Veritabanı entegrasyonu ile tam işl
    cd animated-login-form
    ```
 
-2. **Veritabanı Hazırlayın**
-   
-   **Seçenek A: Kendi SQL dosyanız varsa**
-   - Kendi SQL dosyanızı kullanarak veritabanınızı oluşturun
-   - `index.php` dosyasındaki otomatik tablo oluşturma kodunu kaldırın (isteğe bağlı)
-   
-   **Seçenek B: Otomatik tablo oluşturma**
-   - MySQL'de `login_system` adında bir veritabanı oluşturun
-   - Sistem otomatik olarak `users` tablosunu oluşturacak
+2. **Veritabanı Oluşturun**
+   - MySQL'de istediğiniz adla bir veritabanı oluşturun
+   - Aşağıdaki SQL kodunu phpMyAdmin'de veya MySQL komut satırında çalıştırın:
+
+   ```sql
+   CREATE TABLE users (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       name VARCHAR(100) NOT NULL,
+       email VARCHAR(100) UNIQUE NOT NULL,
+       password VARCHAR(255) NOT NULL,
+       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+   );
+   ```
 
 3. **Veritabanı Ayarlarını Güncelleyin**
    `index.php` dosyasının başındaki veritabanı bilgilerini düzenleyin:
    ```php
    $host = 'localhost';        // Veritabanı sunucu adresi
-   $dbname = 'login_system';   // Veritabanı adı
+   $dbname = 'veritabani_adi'; // İstediğiniz veritabanı adı
    $username = 'root';         // Veritabanı kullanıcı adı
    $password = '';             // Veritabanı şifresi
    ```
@@ -55,6 +59,8 @@ Modern ve animasyonlu giriş/kayıt formu. Veritabanı entegrasyonu ile tam işl
    - `index.php` dosyasını tarayıcınızda açın
    
 HTML olarak denenmiştir!
+### 📱 Demo
+
 ![Animated Login Form Demo](gif.gif)
 
 ## 🎨 Özelleştirme
@@ -66,25 +72,14 @@ HTML olarak denenmiştir!
 
 ## 🗄️ Veritabanı Yapısı
 
-**Kendi SQL dosyanız varsa:** Mevcut tablo yapınızı kullanabilirsiniz, sadece aşağıdaki alanların bulunduğundan emin olun:
+Sistem `users` tablosunu kullanır. Bu tabloyu oluşturmak için yukarıdaki SQL kodunu çalıştırın.
 
-**Otomatik tablo oluşturma kullanıyorsanız:** Sistem otomatik olarak `users` tablosunu oluşturur:
-
-```sql
-CREATE TABLE users (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-```
-
-**Gerekli Alanlar:**
+**Tablo Alanları:**
 - `id` (INT, AUTO_INCREMENT, PRIMARY KEY)
 - `name` (VARCHAR(100), NOT NULL)
 - `email` (VARCHAR(100), UNIQUE, NOT NULL)
 - `password` (VARCHAR(255), NOT NULL)
+- `created_at` (TIMESTAMP, otomatik tarih)
 
 ## 🔧 Teknik Detaylar
 
@@ -99,10 +94,8 @@ CREATE TABLE users (
 - **Veritabanı Bağlantı Hatası**: Veritabanı bilgilerini kontrol edin
 - **Tablo Oluşturma Hatası**: MySQL kullanıcısının CREATE izni olduğundan emin olun
 - **Form Çalışmıyor**: PHP'nin çalıştığından emin olun
-- **Kendi SQL kullanıyorsanız**: Tablo yapısının gerekli alanları içerdiğinden emin olun
-- **Otomatik tablo oluşturma istemiyorsanız**: `index.php`'deki `$pdo->exec($createTable);` satırını kaldırın
+- **Tablo Bulunamadı**: SQL kodunu doğru çalıştırdığınızdan emin olun
 
 ## 👨‍💻 Geliştirici
 
 **SPEXRON** tarafından tasarlanmış ve geliştirilmiştir.
-
