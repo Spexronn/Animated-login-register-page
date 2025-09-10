@@ -34,7 +34,7 @@ Modern ve animasyonlu giriş/kayıt formu. Veritabanı entegrasyonu ile tam işl
 2. **Veritabanı Oluşturun**
    - MySQL'de istediğiniz adla bir veritabanı oluşturun
    - Aşağıdaki SQL kodunu phpMyAdmin'de SQL kısmında çılıştırın ya da SQL dosyası içine ekleyin!
-   - 
+     
 
    ```sql
    CREATE TABLE users (
@@ -100,5 +100,6 @@ Sistem `users` tablosunu kullanır. Bu tabloyu oluşturmak için yukarıdaki SQL
 ## 👨‍💻 Geliştirici
 
 **SPEXRON** tarafından tasarlanmış ve geliştirilmiştir.
+
 
 
