@@ -25,7 +25,9 @@ Modern ve animasyonlu giriş/kayıt formu. Veritabanı entegrasyonu ile tam işl
 
 1. **Dosyaları İndirin**
    ```bash
-   git clone [repository-url]
+   git clone https://github.com/Spexronn/Animated-login-register-page.git
+   ```
+   ```
    cd animated-login-form
    ```
 
