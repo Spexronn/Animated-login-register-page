@@ -31,9 +31,15 @@ Modern ve animasyonlu giriş/kayıt formu. Veritabanı entegrasyonu ile tam işl
    cd animated-login-form
    ```
 
-2. **Veritabanı Oluşturun**
+2. **Veritabanı Hazırlayın**
+   
+   **Seçenek A: Kendi SQL dosyanız varsa**
+   - Kendi SQL dosyanızı kullanarak veritabanınızı oluşturun
+   - `index.php` dosyasındaki otomatik tablo oluşturma kodunu kaldırın (isteğe bağlı)
+   
+   **Seçenek B: Otomatik tablo oluşturma**
    - MySQL'de `login_system` adında bir veritabanı oluşturun
-   - Veya `index.php` dosyasındaki `$dbname` değişkenini kendi veritabanı adınızla değiştirin
+   - Sistem otomatik olarak `users` tablosunu oluşturacak
 
 3. **Veritabanı Ayarlarını Güncelleyin**
    `index.php` dosyasının başındaki veritabanı bilgilerini düzenleyin:
@@ -47,8 +53,8 @@ Modern ve animasyonlu giriş/kayıt formu. Veritabanı entegrasyonu ile tam işl
 4. **Projeyi Çalıştırın**
    - Dosyaları web sunucunuzun root dizinine kopyalayın
    - `index.php` dosyasını tarayıcınızda açın
-   - Veritabanı tablosu otomatik olarak oluşturulacak
-
+   
+HTML olarak denenmiştir!
 ### 📱 Demo
 
 ![Animated Login Form Demo](gif.gif)
@@ -62,7 +68,9 @@ Modern ve animasyonlu giriş/kayıt formu. Veritabanı entegrasyonu ile tam işl
 
 ## 🗄️ Veritabanı Yapısı
 
-Sistem otomatik olarak `users` tablosunu oluşturur:
+**Kendi SQL dosyanız varsa:** Mevcut tablo yapınızı kullanabilirsiniz, sadece aşağıdaki alanların bulunduğundan emin olun:
+
+**Otomatik tablo oluşturma kullanıyorsanız:** Sistem otomatik olarak `users` tablosunu oluşturur:
 
 ```sql
 CREATE TABLE users (
@@ -74,6 +82,12 @@ CREATE TABLE users (
 );
 ```
 
+**Gerekli Alanlar:**
+- `id` (INT, AUTO_INCREMENT, PRIMARY KEY)
+- `name` (VARCHAR(100), NOT NULL)
+- `email` (VARCHAR(100), UNIQUE, NOT NULL)
+- `password` (VARCHAR(255), NOT NULL)
+
 ## 🔧 Teknik Detaylar
 
 - **Backend**: PHP 7.4+
@@ -82,22 +96,14 @@ CREATE TABLE users (
 - **Güvenlik**: PDO prepared statements, password hashing
 - **Session**: PHP session yönetimi
 
-## 📝 Kullanım
-
-1. **Kayıt Ol**: Yeni kullanıcı hesabı oluşturun
-2. **Giriş Yap**: Mevcut hesabınızla giriş yapın
-3. **Session**: Başarılı giriş sonrası kullanıcı oturumu başlar
-
 ## 🛠️ Sorun Giderme
 
 - **Veritabanı Bağlantı Hatası**: Veritabanı bilgilerini kontrol edin
 - **Tablo Oluşturma Hatası**: MySQL kullanıcısının CREATE izni olduğundan emin olun
 - **Form Çalışmıyor**: PHP'nin çalıştığından emin olun
+- **Kendi SQL kullanıyorsanız**: Tablo yapısının gerekli alanları içerdiğinden emin olun
+- **Otomatik tablo oluşturma istemiyorsanız**: `index.php`'deki `$pdo->exec($createTable);` satırını kaldırın
 
 ## 👨‍💻 Geliştirici
 
 **SPEXRON** tarafından tasarlanmış ve geliştirilmiştir.
-
-## 📄 Lisans
-
-Bu proje açık kaynak kodludur ve özgürce kullanılabilir.
